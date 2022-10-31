@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css" />
+    <link rel="stylesheet" href="/resources/css/style.css">
+</head>
+
+<body>
+
+    <nav>
+        <div>
+            <a href="/">Inicio</a>
+        </div>
+        <div>
+            <a href="/password">Cambio de contraseña</a>
+        </div>
+        <% if (login) { %>
+            <% if(tipoPersona==2){ %>
+                <div>
+                    <a href="/users">Mantenimiento de usuarios</a>
+                </div>
+                <% } %>
+                    <% } %>
+                        <div>
+                            <a class="logout" href="/logout">Cerrar sesión</a>
+                        </div>
+    </nav>
+
+    <main class="container">

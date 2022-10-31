@@ -1,0 +1,63 @@
+<%- include('./partials/header'); %>
+    <% if (tipoPersona==2) { %>
+        <div>
+            <h1>Usuarios</h1>
+            <a class="btn-edit" href="new">Nuevo usuario</a>
+            <div class="table-box">
+                <table>
+                    <thead>
+                        <tr>
+                            <td>ID</td>
+                            <td>Nombre</td>
+                            <td>Login</td>
+                            <td>Fecha de inicio</td>
+                            <td>Fecha de fin</td>
+                            <td>Estado</td>
+                            <td colspan="2">Acciones</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% users.forEach((user)=> { %>
+                            <tr>
+                                <td>
+                                    <%= user.CvUser %>
+                                </td>
+                                <td>
+                                    <%= user.Nombre %>
+                                </td>
+                                <td>
+                                    <%= user.NomUser %>
+                                </td>
+                                <td>
+                                    <%= user.fechainicio %>
+                                </td>
+                                <td>
+                                    <%= user.fechafin %>
+                                </td>
+                                <td>
+                                    <% if(user.EdoCta){ %>
+                                        Activo
+                                        <% } else{ %>
+                                            Inactivo
+                                            <% } %>
+                                </td>
+                                <td>
+                                    <a href="/edit/<%= user.CvUser %>" class="btn-edit">Editar</a>
+
+                                </td>
+                                <td id="td">
+                                    <a data-userDelete="<%= user.CvUser %>" class="btn-danger btn-delete">Eliminar</a>
+                                </td>
+                            </tr>
+                            <% }) %>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <% } else{ %>
+            <h1>Usted no cuenta con los privilegios para acceder a esta parte del sistema</h1>
+            <% } %>
+
+                <script src="/resources/js/confirm.js"></script>
+                <%- include('./partials/sweetalert'); %>
+                    <%- include('./partials/footer'); %>

@@ -1,7 +1,6 @@
 const express = require("express"),
   app = express(),
-  session = require("express-session"),
-  dotenv = require("dotenv");
+  session = require("express-session");
 
 // Establecer el motor de plantillas
 app.set("view engine", "ejs");
@@ -13,9 +12,6 @@ app.use("/resources", express.static(__dirname + "/public"));
 // Configuración para obtener datos del formulario
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-
-// Uso de variables de entorno
-dotenv.config({ path: "./env/.env" });
 
 // uso de sesiones
 app.use(

@@ -1,0 +1,60 @@
+<%- include('./partials/header'); %>
+    <% if (login) { %>
+        <% if (tipoPersona==2) { %>
+            <div class="login">
+                <h3>Nuevo usuario:</h3>
+                <form action="/new-user" method="POST">
+                    <label>CvPersona
+                        <select name="CvPersonNewUser">
+                            <option value="#">Seleccione un código de persona</option>
+                            <% cvperso.forEach((cv)=> { %>
+                                <option value="<%= cv.CvPerso %>">
+                                    <%= cv.Nombre %>
+                                </option>
+
+                                <% }) %>
+                        </select>
+
+                    </label>
+                    <label>Login del usuario
+                        <input type="text" name="loginNewUser" placeholder="Ingrese el login del usuario"
+                            autocomplete="off">
+                    </label>
+                    <label>Contraseña
+                        <input type="password" name="passwordNewUser" placeholder="Ingrese la nueva contraseña"
+                            autocomplete="off" id="password">
+                        <i class="bi bi-eye-slash" id="togglePassword"></i>
+                    </label>
+                    <label>Fecha de inicio
+                        <input type="date" name="inicioNewUser">
+                    </label>
+                    <label>Fecha de termino
+                        <input type="date" name="finNewUser">
+                    </label><label>
+                        Estado de la cuenta
+                        <input type="checkbox" name="stateNewUser">
+                    </label>
+                    <button class="btn-success">
+                        Guardar
+                    </button>
+                </form>
+                <div style="margin-top: 5px; width: 100%; height: 40px;">
+                    <a href="/users" class="btn-danger"
+                        style="width: 88%; font-size: 13px; height: 16px; text-align: center;" id="cancelUsers">
+                        Cancelar
+                    </a>
+                </div>
+            </div>
+            <% } else{ %>
+                <h1>Usted no cuenta con los privilegios para acceder a esta parte del sistema</h1>
+                <% } %>
+                    <%} else { %>
+                        <h1><strong>
+                                <%= name %>
+                            </strong></h1>
+                        <a href="login" class="a-login">Iniciar sesión</a>
+                        <% } %>
+
+                            <%- include('./partials/sweetalert'); %>
+
+                                <%- include('./partials/footer'); %>

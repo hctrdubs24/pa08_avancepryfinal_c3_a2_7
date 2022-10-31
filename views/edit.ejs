@@ -1,0 +1,60 @@
+<%- include('./partials/header'); %>
+    <% if (login) { %>
+        <% if (tipoPersona==2) { %>
+            <div class="login">
+                <h3>Editar usuario:</h3>
+                <form action="/update-user" method="POST">
+                    <% if(userToUpdate) { %>
+                        <input type="hidden" name="CvUserUpdate" value="<%= userToUpdate.CvUser %>">
+                        <label>CvPersona
+                            <select name="CvPersonUserUpdate">
+                                <option value="<%= userToUpdate.CvPerso %>">
+                                    <%= userToUpdate.Nombre %>
+                                </option>
+                            </select>
+                        </label>
+                        <label>Login del usuario
+                            <input type="text" name="loginUserUpdate" placeholder="Ingrese el login del usuario"
+                                value="<%= userToUpdate.NomUser %>" autocomplete="off">
+                        </label>
+                        <label>Contraseña
+                            <input type="password" name="passwordUserUpdate" placeholder="Ingrese la nueva contraseña"
+                                value="<%= userToUpdate.Contrasena %>" autocomplete="off" id="password">
+                            <i class="bi bi-eye-slash" id="togglePassword"></i>
+                        </label>
+                        <label>Fecha de inicio
+                            <input type="date" name="inicioUserUpdate" value="<%= userToUpdate.fechainicio %>">
+                        </label>
+                        <label>Fecha de termino
+                            <input type="date" name="finUserUpdate" value="<%= userToUpdate.fechafin %>">
+                        </label>
+                        <label>
+                            Estado de la cuenta
+                            <input type="checkbox" name="stateUserUpdate" <% if (userToUpdate.EdoCta==1) { %> checked <%
+                                } %> >
+                        </label>
+                        <button class="btn-success">
+                            Guardar
+                        </button>
+                        <% } %>
+                </form>
+                <div style="margin-top: 5px; width: 100%; height: 40px;">
+                    <a href="/users" class="btn-danger"
+                        style="width: 88%; font-size: 13px; height: 16px; text-align: center;" id="cancelUsers">
+                        Cancelar
+                    </a>
+                </div>
+            </div>
+            <% } else{ %>
+                <h1>Usted no cuenta con los privilegios para acceder a esta parte del sistema</h1>
+                <% } %>
+                    <%} else { %>
+                        <h1><strong>
+                                <%= name %>
+                            </strong></h1>
+                        <a href="login" class="a-login">Iniciar sesión</a>
+                        <% } %>
+
+                            <%- include('./partials/sweetalert'); %>
+
+                                <%- include('./partials/footer'); %>

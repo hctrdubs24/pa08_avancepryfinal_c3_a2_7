@@ -3,31 +3,21 @@ const express = require("express"),
   authController = require("../controllers/authController");
 
 // Router para las vistas
-router.get("/", (req, res) => {
-  if (req.session.loggedin) {
-    res.render("index", {
-      login: true,
-      name: req.session.name,
-    });
-  } else {
-    res.render("index", {
-      login: false,
-      name: "Debe iniciar sesión",
-    });
-  }
-});
+router.get("/", authController.renderIndex);
+router.get("/login", authController.renderLogin);
+router.get("/password", authController.renderPassword);
+router.get("/users", authController.renderUserTable);
+router.get("/new", authController.renderNewUserForm);
+router.get("/edit/:id", authController.renderEditUserForm);
+router.get("/delete/:id", authController.delete);
 
-router.get("/login", (req, res) => {
-  res.render("login");
-});
+// Cerrar sesión
+router.get("/logout", authController.logout);
 
-// Router para controlador
+// Router para autenticación de usuarios
 router.post("/auth", authController.login);
-
-router.get("/logout", (req, res) => {
-  req.session.destroy(() => {
-    res.redirect("/login");
-  });
-});
+router.post("/password", authController.updatePassword);
+router.post("/new-user", authController.createUser);
+router.post("/update-user", authController.updateUser);
 
 module.exports = router;
